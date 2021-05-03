@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Son;
+use App\Models\People;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +18,10 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/People/store', 'PeopleController@store')->name('people.store');
 Route::get('/People/show/{People}', 'PeopleController@show')->name('people.show');
 Route::post('/People/update/{People}', 'PeopleController@update')->name('people.update');
-Route::get('/People/delete/{People}', 'PeopleController@delete')->name('people.delete');
+Route::delete('/People/delete/{People}', 'PeopleController@delete')->name('people.delete');
+
+Route::get('/test', function () {
+	// return People::with(['sons' => function($son){
+	// 	$son->where('age', '>', 2);
+	// }])->find(1);
+});

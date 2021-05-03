@@ -16,7 +16,10 @@ class PeopleController extends Controller
 	{
 		$people = new People($request->all());
 		$people->save();
-		return back();
+
+		return response()->json([
+			'people' => $people
+		]);
 	}
 
 	/**
@@ -26,6 +29,7 @@ class PeopleController extends Controller
 	 */
 	public function show(People $People)
 	{
+		$People->load('sons');
 		return view('people.show', ['person' => $People]);
 	}
 
@@ -48,7 +52,11 @@ class PeopleController extends Controller
 	 */
 	public function delete(People $People)
 	{
+		$People->sons()->delete();
 		$People->delete();
-		return back();
+
+		return response()->json([
+			'deleted' => true
+		]);
 	}
 }

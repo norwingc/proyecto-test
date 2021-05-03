@@ -25,4 +25,23 @@
 			<button type="submit" class="btn btn-info text-white">Guardar</button>
 		</div>
 	</form>
+
+	<h1>List sons</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($person->sons as $son)
+				<tr>
+					<td>{{ $son->full_name }}</td>
+					<td>{{ $son->age }}</td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
 @endsection
