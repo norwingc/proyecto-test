@@ -23,21 +23,28 @@
 
 <script>
 export default {
+	props: ['new_people'],
 	data(){
 		return{
-			people:{
-				full_name: '',
-				address: '',
-				age: ''
-			}
+			people: {},
+			url: `/People/store`
 		}
+	},
+	mounted(){
+		if(this.new_people.id != undefined){
+			this.url = `/People/update/${this.new_people.id}`
+			this.people = this.new_people
+		}
+
 	},
 	methods:{
 		async save(){
-			await axios.post(`/People/store`, this.people).then(res => {
-				this.$parent.all_people.push(res.data.people)
+			await axios.post(this.url, this.people).then(res => {
+				if(this.new_people.id === undefined){
+					this.$parent.all_people.push(res.data.people)
+					this.clear()
+				}
 				alert('Persona Guardada')
-				this.clear()
 			})
 		},
 		clear(){

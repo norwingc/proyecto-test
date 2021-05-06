@@ -8,12 +8,17 @@ require('./bootstrap');
 
 import Vue from 'vue'
 
+import FormPeople from './components/people/Form'
 import Index from './components/people/Index'
+import ListSon from './components/son/List'
+
 
 
 new Vue({
     el: '#app',
 	components:{
-		'people-index': Index
+		'people-index': Index,
+		ListSon,
+		FormPeople
 	}
 });

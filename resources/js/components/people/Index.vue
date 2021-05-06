@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<form-people />
+		<form-people :new_people="new_people" />
 		<list :people="all_people" />
 	</section>
 </template>
@@ -12,7 +12,7 @@ import Form from './Form'
 import List from './List'
 
 export default {
-	props: ['people'],
+	props: ['people', 'new_people'],
 	components:{
 		'form-people': Form,
 		List

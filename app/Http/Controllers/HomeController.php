@@ -10,6 +10,8 @@ class HomeController extends Controller
     public function index()
 	{
 		$people = People::all();
-		return view('home', compact('people'));
+		$new_people = new People();
+
+		return view('home', compact('people', 'new_people'));
 	}
 }

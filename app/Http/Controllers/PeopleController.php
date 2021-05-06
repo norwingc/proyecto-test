@@ -30,7 +30,8 @@ class PeopleController extends Controller
 	public function show(People $People)
 	{
 		$People->load('sons');
-		return view('people.show', ['person' => $People]);
+		$new_people = $People;
+		return view('people.show', ['person' => $People, 'new_people' => $new_people]);
 	}
 
 	/**
