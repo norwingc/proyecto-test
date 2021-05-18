@@ -13,12 +13,16 @@ use App\Models\People;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use Spatie\Permission\Models\Role;
 Route::get('/test', function () {
-	// return People::with(['sons' => function($son){
-		// 	$son->where('age', '>', 2);
-		// }])->find(1);
-	});
+	//$role = Role::create(['name' => 'admin']);
+
+	//\Auth::login(\App\Models\User::find(1));
+
+	$user = \App\Models\User::find(1);
+	// $user->assignRole('admin');
+	$user->removeRole('admin');
+});
 
 Auth::routes();
 
@@ -29,6 +33,12 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/People/show/{People}', 'PeopleController@show')->name('people.show');
 	Route::post('/People/update/{People}', 'PeopleController@update')->name('people.update');
 	Route::delete('/People/delete/{People}', 'PeopleController@delete')->name('people.delete');
+
+	Route::group(['middleware' => ['role:admin']], function () {
+		Route::get('/admin', function(){
+			return 'solo admin';
+		});
+	});
 });
 
 

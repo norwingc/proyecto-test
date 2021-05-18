@@ -7,6 +7,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>Document</title>
 	<link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+	@yield('css')
 </head>
 <body>
 
@@ -17,5 +18,7 @@
 	</div>
 
 	<script src="{{ mix('/js/app.js') }}"></script>
+	@yield('js')
+
 </body>
 </html>
