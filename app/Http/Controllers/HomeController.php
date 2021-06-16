@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+	public function index()
 	{
-		$people = People::all();
-		$new_people = new People();
+		$people = People::get();
+		return view('home', compact('people'));
+	}
 
-		return view('home', compact('people', 'new_people'));
+	public function hola($hola = null)
+	{
+		if ($hola == null) return 'no hay nadie';
+		return "hola {$hola}";
 	}
 }

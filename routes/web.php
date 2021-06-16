@@ -13,32 +13,23 @@ use App\Models\People;
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Spatie\Permission\Models\Role;
-Route::get('/test', function () {
-	//$role = Role::create(['name' => 'admin']);
 
-	//\Auth::login(\App\Models\User::find(1));
+// GET, POSt PUT DLETE, ANY
 
-	$user = \App\Models\User::find(1);
-	// $user->assignRole('admin');
-	$user->removeRole('admin');
-});
+// Route::get('/hola', function(){
+// 	return view('home');
+// });
 
-Auth::routes();
+Route::get('/', 'HomeController@index')->name('home');
+Route::post('People/store', 'PeopleController@store')->name('people.store');
+Route::get('/People/Edit/{id}', 'PeopleController@edit')->name('people.edit');
+Route::post('/People/update/{id}', 'PeopleController@update')->name('people.update');
+Route::get('/People/delete/{id}', 'PeopleController@delete')->name('people.delete');
 
-Route::middleware(['auth'])->group(function () {
-	Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-	Route::get('/', 'HomeController@index')->name('home');
-	Route::post('/People/store', 'PeopleController@store')->name('people.store');
-	Route::get('/People/show/{People}', 'PeopleController@show')->name('people.show');
-	Route::post('/People/update/{People}', 'PeopleController@update')->name('people.update');
-	Route::delete('/People/delete/{People}', 'PeopleController@delete')->name('people.delete');
+// Route::view('/', 'home');
 
-	Route::group(['middleware' => ['role:admin']], function () {
-		Route::get('/admin', function(){
-			return 'solo admin';
-		});
-	});
-});
+Route::get('hola/{name?}', 'HomeController@hola')->name('hola');
+
+
 
 

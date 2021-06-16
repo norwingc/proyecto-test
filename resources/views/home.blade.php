@@ -1,73 +1,45 @@
-@extends('template.template')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Agenda</h1>
 
-@section('css')
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-@endsection()
+	<form action="{{ route('people.store') }}" method="POST">
+		@csrf
+		<label>Full Name</label>
+		<input type="text" name="full_name">
+		<label>Phone</label>
+		<input type="text" name="phone">
+		<button type="submit">Save</button>
+	</form>
 
-@section('content')
-
-	<div>
-		<people-index :people="{{ $people }}" :new_people="{{ $new_people }}"/>
-	</div>
-	<section>
-
-		<table id="example" class="table">
-			<thead>
+	<table style="margin-top: 2em">
+		<thead>
+			<tr>
+				<th>Full Name</th>
+				<th>Phone</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($people as $person)
 				<tr>
-					<th>Name</th>
-					<th>Position</th>
-					<th>Office</th>
-					<th>Age</th>
-					<th>Start date</th>
-					<th>Salary</th>
+					<td>{{ $person->full_name }}</td>
+					<td>{{ $person->phone }}</td>
+					<td>
+						<a href="{{ route('people.edit', $person->id) }}">Edit</a>
+						<a href="{{ route('people.delete', $person->id) }}">Delete</a>
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Tiger Nixon</td>
-					<td>System Architect</td>
-					<td>Edinburgh</td>
-					<td>61</td>
-					<td>2011/04/25</td>
-					<td>$320,800</td>
-				</tr>
-				<tr>
-					<td>Garrett Winters</td>
-					<td>Accountant</td>
-					<td>Tokyo</td>
-					<td>63</td>
-					<td>2011/07/25</td>
-					<td>$170,750</td>
-				</tr>
-				<tr>
-					<td>Ashton Cox</td>
-					<td>Junior Technical Author</td>
-					<td>San Francisco</td>
-					<td>66</td>
-					<td>2009/01/12</td>
-					<td>$86,000</td>
-				</tr>
-				@for ($i=0; $i<100; $i++)
-					<tr>
-						<td>Cedric Kelly</td>
-						<td>Senior Javascript Developer</td>
-						<td>Edinburgh</td>
-						<td>22</td>
-						<td>2012/03/29</td>
-						<td>$433,060</td>
-					</tr>
-				@endfor
-			</tbody>
-		</table>
-	</section>
-@endsection
+			@endforeach
+		</tbody>
+	</table>
+</body>
 
-@section('js')
+</html>
 
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$('#example').DataTable();
-	});
-</script>
-@endsection
