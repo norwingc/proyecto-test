@@ -9,43 +9,31 @@ class PeopleController extends Controller
 {
 	public function store(Request $request)
 	{
-		// $people = new People();
-		// $people->full_name = $request->full_name;
-		// $people->phone = $request->phone;
-		// $people->save();
-
-		// People::create([
-		// 	'full_name' => $request->full_name,
-		// 	'phone' => $request->phone,
-		// ]);
-
 		$people = new People($request->all());
 		$people->save();
+
+		return response()->json([
+			'person' => $people,
+			'saved' => true
+		]);
+	}
+
+	public function edit(People $People)
+	{
+		return view('edit_people', ['person' => $People]);
+	}
+
+	public function update(Request $request, People $People)
+	{
+		$People->update($request->all());
 		return back();
 	}
 
-	public function edit($id)
+	public function delete(People $People)
 	{
-		$person = People::find($id);
-		return view('edit_people', compact('person'));
+		$People->delete();
+		return response()->json([
+			'deleted' => true
+		]);
 	}
-
-	public function update(Request $request, $id)
-	{
-		$people = People::find($id);
-		$people->full_name = $request->full_name;
-		$people->phone = $request->phone;
-		$people->update();
-
-		return back();
-	}
-
-	public function delete($id)
-	{
-		$person = People::find($id);
-		$person->delete();
-		return back();
-	}
-
-
 }

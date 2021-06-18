@@ -22,14 +22,17 @@ use App\Models\People;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('People/store', 'PeopleController@store')->name('people.store');
-Route::get('/People/Edit/{id}', 'PeopleController@edit')->name('people.edit');
-Route::post('/People/update/{id}', 'PeopleController@update')->name('people.update');
-Route::get('/People/delete/{id}', 'PeopleController@delete')->name('people.delete');
+Route::get('/People/Edit/{People}', 'PeopleController@edit')->name('people.edit');
+Route::post('/People/update/{People}', 'PeopleController@update')->name('people.update');
+Route::delete('/People/delete/{People}', 'PeopleController@delete')->name('people.delete');
 
 // Route::view('/', 'home');
 
 Route::get('hola/{name?}', 'HomeController@hola')->name('hola');
 
+Route::view('/zapato', 'zapato');
 
 
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');

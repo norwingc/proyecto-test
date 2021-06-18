@@ -1,22 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-</head>
-<body>
-	<a href="/">home</a>
-	<h1>Editando a la persona</h1>
+@extends('layouts.app')
 
-	<form action="{{ route('people.update', $person->id) }}" method="POST">
-		@csrf
-		<label>Full Name</label>
-		<input type="text" name="full_name" value="{{ $person->full_name }}">
-		<label>Phone</label>
-		<input type="text" name="phone" value="{{ $person->phone }}">
-		<button type="submit">Save</button>
-	</form>
-</body>
-</html>
+@section('content')
+	<div class="container">
+		<h1 class="mt-4 text-center">Editando a la persona</h1>
+
+		<form action="{{ route('people.update', $person->id) }}" method="POST"  class="form">
+			@csrf
+			<div class="form-group">
+				<label>Full Name</label>
+				<input type="text" name="full_name" value="{{ $person->full_name }}" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Phone</label>
+				<input type="text" name="phone" value="{{ $person->phone }}"  class="form-control">
+			</div>
+
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+		</form>
+	</div>
+@endsection

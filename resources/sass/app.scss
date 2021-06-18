@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.title{
+	background-color: $primary-color;
+	text-decoration: underline;
+	color: $secundary-color;
+}

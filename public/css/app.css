@@ -10942,3 +10942,9 @@ a.text-dark:focus {
   }
 }
 
+.title {
+  background-color: #49a942;
+  text-decoration: underline;
+  color: #db2bd2;
+}
+
