@@ -35,7 +35,6 @@ export default {
 			this.url = `/People/update/${this.new_people.id}`
 			this.people = this.new_people
 		}
-
 	},
 	methods:{
 		async save(){

@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Son;
-use App\Models\People;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,15 +10,18 @@ use App\Models\People;
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Spatie\Permission\Models\Role;
+
+use App\Models\City;
+use App\Models\People;
+
 Route::get('/test', function () {
-	//$role = Role::create(['name' => 'admin']);
+	$people =  People::find(1);
 
-	//\Auth::login(\App\Models\User::find(1));
+	return $people->load('city', 'sons');
+});
 
-	$user = \App\Models\User::find(1);
-	// $user->assignRole('admin');
-	$user->removeRole('admin');
+Route::get('/sin-login', function(){
+	return 'fasdf';
 });
 
 Auth::routes();
@@ -40,5 +40,7 @@ Route::middleware(['auth'])->group(function () {
 		});
 	});
 });
+
+
 
 

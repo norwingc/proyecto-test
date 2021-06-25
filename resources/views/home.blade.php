@@ -9,7 +9,7 @@
 	<div>
 		<people-index :people="{{ $people }}" :new_people="{{ $new_people }}"/>
 	</div>
-	<section>
+	{{-- <section>
 
 		<table id="example" class="table">
 			<thead>
@@ -59,7 +59,7 @@
 				@endfor
 			</tbody>
 		</table>
-	</section>
+	</section> --}}
 @endsection
 
 @section('js')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\People;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,8 @@ class PeopleController extends Controller
 	{
 		$People->load('sons');
 		$new_people = $People;
-		return view('people.show', ['person' => $People, 'new_people' => $new_people]);
+		$cities = City::get();
+		return view('people.show', ['person' => $People, 'new_people' => $new_people, 'cities' => $cities]);
 	}
 
 	/**
